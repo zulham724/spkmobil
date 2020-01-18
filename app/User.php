@@ -37,4 +37,12 @@ class User extends \TCG\Voyager\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profile(){
+        return $this->hasOne('App\Profile');
+    }
+
+    public function orders(){
+        return $this->hasMany('App\Order');
+    }
 }

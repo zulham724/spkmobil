@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index');
 
 Auth::routes();
 
@@ -23,3 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::group(['middleware'=>['auth']],function(){
+    Route::resources([
+        'product'=>'ProductController'
+    ]);
+});
+
+Route::get('contact','WelcomeController@contact')->name('contact');

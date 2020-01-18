@@ -15,6 +15,11 @@ class CreateProductSpesificationsTable extends Migration
     {
         Schema::create('product_spesifications', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('product_id');
+            $table->string('name');
+            $table->string('image')->nullable();
+            $table->string('description')->nullable();
+            $table->string('value')->nullable();
             $table->timestamps();
         });
     }
