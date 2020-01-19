@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('model_id');
             $table->string('name');
             $table->bigInteger('price')->default(0);
-            $table->string('document')->nullable();
             $table->timestamps();
 
             $table->foreign('model_id')->references('id')->on('product_models')->onDelete('cascade');

@@ -86,6 +86,6 @@ class WelcomeController extends Controller
     }
 
     public function contact(){
-        return 'asd';
+        return view('pages.contact');
     }
 }

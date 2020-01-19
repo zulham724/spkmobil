@@ -17,6 +17,7 @@ class CreateProductModelsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description')->nullable();
+            $table->string('document')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\ProductModel;
 
 class ProductController extends Controller
 {
@@ -15,6 +16,10 @@ class ProductController extends Controller
     public function index()
     {
         //
+        $data['product_models'] = ProductModel::with(['products'=>function($query){
+            $query->orderBy('price','asc');
+        }])->get();
+        return view('pages.product.index',$data);
     }
 
     /**

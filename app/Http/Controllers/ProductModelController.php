@@ -15,6 +15,11 @@ class ProductModelController extends Controller
     public function index()
     {
         //
+        $data['product_models'] = ProductModel::with(['products'=>function($query){
+            $query->orderBy('price','asc');
+        }])->get();
+        // dd($data);
+        return view('pages.productmodel.index',$data);
     }
 
     /**
@@ -44,9 +49,12 @@ class ProductModelController extends Controller
      * @param  \App\ProductModel  $productModel
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductModel $productModel)
+    public function show($id)
     {
         //
+        $data['product_model'] = ProductModel::findOrFail($id);
+        // dd($data);
+        return view('pages.productmodel.show',$data);
     }
 
     /**

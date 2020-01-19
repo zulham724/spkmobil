@@ -24,8 +24,10 @@ Route::group(['prefix' => 'admin'], function () {
 
 Route::group(['middleware'=>['auth']],function(){
     Route::resources([
-        'product'=>'ProductController'
+        'productmodel'=>'ProductModelController',
+        'order'=>'OrderController'
     ]);
+    Route::get('/profile','UserController@profile')->name('profile');
 });
 
 Route::get('contact','WelcomeController@contact')->name('contact');
