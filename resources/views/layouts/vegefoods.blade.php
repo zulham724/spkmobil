@@ -24,6 +24,9 @@
       <link rel="stylesheet" href="{{  asset('vegefoods/css/flaticon.css') }}">
       <link rel="stylesheet" href="{{  asset('vegefoods/css/icomoon.css') }}">
       <link rel="stylesheet" href="{{  asset('vegefoods/css/style.css') }}">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
 </head>
 <body class="goto-here">
 
@@ -65,7 +68,9 @@
 		.ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu .dropdown-item:hover, .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu .dropdown-item:focus {background-color: #82ae46!important; color: #fff!important;}
     </style>
 
-    @yield('content')
+      <v-app id="app">
+        @yield('content')
+      </v-app>
     <hr>
 
     <footer class="ftco-footer ftco-section">
@@ -92,7 +97,7 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-
+   <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
   <script src="{{  asset('vegefoods/js/jquery.min.js') }}"></script>
   <script src="{{  asset('vegefoods/js/jquery-migrate-3.0.1.min.js') }}"></script>
   <script src="{{  asset('vegefoods/js/popper.min.js') }}"></script>

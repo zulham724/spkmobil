@@ -7,6 +7,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import vuetify from 'vuetify'
+
+Vue.use(vuetify)
 
 /**
  * The following block of code may be used to automatically register your
@@ -36,6 +39,10 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue').default
 );
 
+Vue.component('buy-component', require('./components/vegefoods/BuyComponent.vue').default);
+Vue.component('order-component', require('./components/vegefoods/OrderComponent.vue').default);
+Vue.component('download-brochure-component', require('./components/vegefoods/DownloadBrochureComponent.vue').default);
+Vue.component('credit-component', require('./components/vegefoods/CreditComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -44,4 +51,5 @@ Vue.component(
 
 const app = new Vue({
     el: '#app',
+    vuetify: new vuetify
 });
