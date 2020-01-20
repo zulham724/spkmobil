@@ -14,6 +14,10 @@ class ProductModel extends Model
     }
 
     public function model_features(){
-        return $this->hasMany('App\ModelFeature');
+        return $this->hasMany('App\ModelFeature','model_id','id');
+    }
+
+    public function model_colors(){
+        return $this->hasMany('App\ModelColor','model_id','id');
     }
 }

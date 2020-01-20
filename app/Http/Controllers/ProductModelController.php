@@ -15,7 +15,7 @@ class ProductModelController extends Controller
     public function index()
     {
         //
-        $data['product_models'] = ProductModel::with(['products'=>function($query){
+        $data['product_models'] = ProductModel::with(['model_colors','products'=>function($query){
             $query->orderBy('price','asc');
         }])->get();
         // dd($data);
@@ -52,7 +52,7 @@ class ProductModelController extends Controller
     public function show($id)
     {
         //
-        $data['product_model'] = ProductModel::findOrFail($id);
+        $data['product_model'] = ProductModel::with('model_colors')->findOrFail($id);
         // dd($data);
         return view('pages.productmodel.show',$data);
     }
@@ -89,5 +89,10 @@ class ProductModelController extends Controller
     public function destroy(ProductModel $productModel)
     {
         //
+    }
+
+    public function download($id){
+        $productmodel = ProductModel::findorFail($id);
+        return redirect('/storage/'.$productmodel->document);
     }
 }

@@ -18,6 +18,7 @@ class CreateOrderProductsTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('model_color_id')->nullable();
+            $table->string('color')->nullable();
             $table->integer('quantity')->default(0);
             $table->timestamps();
 

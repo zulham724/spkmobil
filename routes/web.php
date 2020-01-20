@@ -31,3 +31,4 @@ Route::group(['middleware'=>['auth']],function(){
 });
 
 Route::get('contact','WelcomeController@contact')->name('contact');
+Route::get('productmodels/{id}/download','ProductModelController@download');

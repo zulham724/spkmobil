@@ -1,18 +1,18 @@
 @extends('layouts.vegefoods')
 @section('content')
-
-    <section class="p-0" style="height: calc(100vh - 67px); background-image: url({{ asset('storage/'.$product_model->image) }}); background-size: cover; background-position: inherit;">
+    <section class="p-0" style="height: calc(100vh - 67px); background-image: url({{ asset('storage/'.str_replace('\\','/',$product_model->image)) }}); background-size: cover; background-position: inherit;">
         <div class="col">
             <div class="row">
                 <div class="col-md-5 ml-auto car-link" style="height: calc(100vh - 67px); background: rgba(0,0,0,.6);">
                     <p class="h1 border-bottom border-success my-3 text-light text-uppercase"></p>
-                    <p class="h6 mb-0" style="color: #bebebe !important;">Harga dimulai dari</p>
-                    <p class="h3" style="color: #bebebe !important;">Rp. </p>
+                <p class="h6 mb-0" style="color: #bebebe !important;">Harga dimulai dari</p>
+                <p class="h3" style="color: #bebebe !important;">Rp. {{number_format($product_model->products[0]->price,'2',',','.')}}</p>
                     <div class="row mt-3">
-                    		<buy-component></buy-component>
-                    		<order-component></order-component>
-                    		<download-brochure-component></download-brochure-component>
-                    		<credit-component></credit-component>
+                            <buy-component :product_model="{{$product_model}}"></buy-component>
+                    		{{-- <order-component :product_model="{{$product_model}}"></order-component> --}}
+                            <spk-component :product_model="{{$product_model}}"></spk-component>
+                            <download-brochure-component :product_model="{{$product_model}}"></download-brochure-component>
+                    		<credit-component :product_model="{{$product_model}}"></credit-component>
                     </div>
                 </div>
             </div>

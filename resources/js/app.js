@@ -43,6 +43,7 @@ Vue.component('buy-component', require('./components/vegefoods/BuyComponent.vue'
 Vue.component('order-component', require('./components/vegefoods/OrderComponent.vue').default);
 Vue.component('download-brochure-component', require('./components/vegefoods/DownloadBrochureComponent.vue').default);
 Vue.component('credit-component', require('./components/vegefoods/CreditComponent.vue').default);
+Vue.component('spk-component', require('./components/vegefoods/SpkComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

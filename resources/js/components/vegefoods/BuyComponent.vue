@@ -7,27 +7,61 @@
           transition="dialog-transition"
         >
           <v-card>
-            <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h1>
+            <v-card-text>
+                <v-form>
+                    <v-text-field v-model="product_model.name" disabled></v-text-field>
+                    <v-select v-model="product" return-object label="Tipe Mobil" :items="product_model.products" item-text="name" item-value="id"></v-select>
+                    <v-select v-model="color" return-object label="Pilih Warna" :items="product_model.model_colors" item-text="name" item-value="id"></v-select>
+                    <v-btn block text @click="storeOrder()" :loading="loading" :disabled="loading">Submit</v-btn>
+                </v-form>
+            </v-card-text>
           </v-card>
         </v-dialog>
     </div>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
 
   name: 'BuyComponent',
-
+  props:{
+      product_model:null
+  },
   data() {
     return {
-    	dialog:false
+    	dialog:false,
+        order:null,
+        product:null,
+        color:null,
+        loading: false,
     };
   },
+  mounted(){
+      console.log(this.product_model)
+  },
+  methods:{
+      storeOrder(){
+          return new Promise((resolve,reject)=>{
+              let access = {
+                  product:this.product,
+                  color:this.color
+              }
+              this.loading = true
+              axios.post('/api/v1/order',access).then(res=>{
+                this.loading = false
+                this.dialog = false
+                Swal.fire({
+                    title: 'Sukses!',
+                    text: 'Pembelian Berhasil',
+                    icon:'success'
+                })
+              }).catch(err=>{
+                  this.loading = false
+              })
+          })
+      }
+  }
 };
 </script>
 
