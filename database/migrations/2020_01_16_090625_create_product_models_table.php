@@ -19,6 +19,7 @@ class CreateProductModelsTable extends Migration
             $table->string('description')->nullable();
             $table->string('document')->nullable();
             $table->string('image')->nullable();
+            $table->string('output_year')->nullable();
             $table->timestamps();
         });
     }

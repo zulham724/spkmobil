@@ -14,7 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return $request->user()->load([
+        'orders.order_status',
+        'orders.products.product_model'
+    ]);
 });
 
 Route::group(['prefix'=>'v1','namespace'=>'API\\v1'],function(){
@@ -23,4 +26,5 @@ Route::group(['prefix'=>'v1','namespace'=>'API\\v1'],function(){
             'order'=>'OrderController'
         ]);
     });
+    Route::post('/productmodels/search','ProductModelController@search');
 });

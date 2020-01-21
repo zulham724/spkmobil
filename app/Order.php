@@ -14,7 +14,7 @@ class Order extends Model
     }
 
     public function order_status(){
-        return $this->belongsTo('App\OrderStatus');
+        return $this->belongsTo('App\OrderStatus','status_id','id');
     }
 
     public function payments(){

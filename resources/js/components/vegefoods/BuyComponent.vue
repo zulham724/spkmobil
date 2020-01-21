@@ -10,6 +10,8 @@
             <v-card-text>
                 <v-form>
                     <v-text-field v-model="product_model.name" disabled></v-text-field>
+                    <v-text-field v-model="order.shipping_address" label="Alamat pengiriman"></v-text-field>
+                    <v-text-field v-model="order.contact_number" label="Kontak"></v-text-field>
                     <v-select v-model="product" return-object label="Tipe Mobil" :items="product_model.products" item-text="name" item-value="id"></v-select>
                     <v-select v-model="color" return-object label="Pilih Warna" :items="product_model.model_colors" item-text="name" item-value="id"></v-select>
                     <v-btn block text @click="storeOrder()" :loading="loading" :disabled="loading">Submit</v-btn>
@@ -31,9 +33,9 @@ export default {
   data() {
     return {
     	dialog:false,
-        order:null,
-        product:null,
-        color:null,
+        order:{},
+        product:{},
+        color:{},
         loading: false,
     };
   },
@@ -44,6 +46,7 @@ export default {
       storeOrder(){
           return new Promise((resolve,reject)=>{
               let access = {
+                  order:this.order,
                   product:this.product,
                   color:this.color
               }

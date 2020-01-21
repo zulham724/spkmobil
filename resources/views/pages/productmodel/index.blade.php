@@ -18,6 +18,7 @@
                 <span class="subheading">Mobil Tersedia</span>
               <!-- <h2 class="mb-4">Mobil</h2> -->
               <p>Temukan Mobil Suzuki yang tepat untuk Anda!</p>
+              <center><spk-component></spk-component></center>
             </div>
       </div>
       </div>

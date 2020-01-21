@@ -10,7 +10,7 @@
                     <div class="row mt-3">
                             <buy-component :product_model="{{$product_model}}"></buy-component>
                     		{{-- <order-component :product_model="{{$product_model}}"></order-component> --}}
-                            <spk-component :product_model="{{$product_model}}"></spk-component>
+                            {{-- <spk-component :product_model="{{$product_model}}"></spk-component> --}}
                             <download-brochure-component :product_model="{{$product_model}}"></download-brochure-component>
                     		<credit-component :product_model="{{$product_model}}"></credit-component>
                     </div>

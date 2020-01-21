@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\v1;
 
+use App\Http\Controllers\Controller;
 use App\ProductModel;
 use Illuminate\Http\Request;
 
@@ -13,21 +14,6 @@ class ProductModelController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
-        $data['product_models'] = ProductModel::with(['model_colors','products'=>function($query){
-            $query->orderBy('price','asc');
-        }])->get();
-        // dd($data);
-        return view('pages.productmodel.index',$data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -49,21 +35,7 @@ class ProductModelController extends Controller
      * @param  \App\ProductModel  $productModel
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-        $data['product_model'] = ProductModel::with('model_colors')->findOrFail($id);
-        // dd($data);
-        return view('pages.productmodel.show',$data);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ProductModel  $productModel
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ProductModel $productModel)
+    public function show(ProductModel $productModel)
     {
         //
     }
@@ -86,14 +58,23 @@ class ProductModelController extends Controller
      * @param  \App\ProductModel  $productModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductModel $productModel)
+    public function destroy($id)
     {
         //
+        $productmodel = ProductModel::findOrfail($id)->delete();
+        return response()->json($productmodel);
     }
 
-    public function download($id){
-        $productmodel = ProductModel::findorFail($id);
-        return redirect('/storage/'.$productmodel->document);
+    public function search(Request $request){
+        // dd($request);
+        $productmodels = ProductModel::
+        where('output_year','>',$request->year_start)
+        ->where('output_year','<',$request->year_end)
+        ->whereHas('products',function($query)use($request){
+            $query->where('price','>',$request->budget_start)
+            ->where('price','<',$request->budget_end);
+        })
+        ->get();
+        return response()->json($productmodels);
     }
-
 }

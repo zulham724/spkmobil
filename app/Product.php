@@ -12,4 +12,8 @@ class Product extends Model
     public function product_spesifications(){
         return $this->hasMany('App\ProductSpesification');
     }
+
+    public function product_model(){
+        return $this->belongsTo('App\ProductModel','model_id','id');
+    }
 }
