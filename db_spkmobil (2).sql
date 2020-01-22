@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Jan 2020 pada 12.35
+-- Waktu pembuatan: 22 Jan 2020 pada 13.06
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.10
 
@@ -152,8 +152,8 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (77, 10, 'user_id', 'text', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 2),
 (78, 10, 'status_id', 'text', 'Status Id', 1, 1, 1, 1, 1, 1, '{}', 3),
 (79, 10, 'description', 'text', 'Description', 0, 1, 1, 1, 1, 1, '{}', 4),
-(80, 10, 'shipping_address', 'text', 'Shipping Address', 1, 1, 1, 1, 1, 1, '{}', 5),
-(81, 10, 'contact_number', 'text', 'Contact Number', 1, 1, 1, 1, 1, 1, '{}', 6),
+(80, 10, 'shipping_address', 'text', 'Shipping Address', 0, 1, 1, 1, 1, 1, '{}', 5),
+(81, 10, 'contact_number', 'text', 'Contact Number', 0, 1, 1, 1, 1, 1, '{}', 6),
 (82, 10, 'total_amount', 'number', 'Total Amount', 1, 1, 1, 1, 1, 1, '{}', 7),
 (83, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
 (84, 10, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
@@ -194,12 +194,13 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (119, 7, 'model_color_belongsto_product_model_relationship', 'relationship', 'Model Produk', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\ProductModel\",\"table\":\"product_models\",\"type\":\"belongsTo\",\"column\":\"model_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
 (120, 8, 'model_feature_belongsto_product_model_relationship', 'relationship', 'Model Produk', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\ProductModel\",\"table\":\"product_models\",\"type\":\"belongsTo\",\"column\":\"model_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 9),
 (121, 10, 'order_belongsto_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 10),
-(122, 10, 'order_belongsto_order_status_relationship', 'relationship', 'Status Pesanan', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\OrderStatus\",\"table\":\"order_statuses\",\"type\":\"belongsTo\",\"column\":\"status_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 11),
 (123, 11, 'payment_belongsto_order_relationship', 'relationship', 'ID Pesanan', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Order\",\"table\":\"orders\",\"type\":\"belongsTo\",\"column\":\"order_id\",\"key\":\"id\",\"label\":\"id\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
 (124, 13, 'product_spesification_belongsto_product_relationship', 'relationship', 'Produk', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Product\",\"table\":\"products\",\"type\":\"belongsTo\",\"column\":\"product_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
 (125, 15, 'profile_belongsto_user_relationship', 'relationship', 'User', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
 (126, 14, 'product_belongsto_product_model_relationship', 'relationship', 'Model Produk', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\ProductModel\",\"table\":\"product_models\",\"type\":\"belongsTo\",\"column\":\"model_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
-(127, 12, 'output_year', 'text', 'Output Year', 0, 1, 1, 1, 1, 1, '{}', 8);
+(127, 12, 'output_year', 'text', 'Output Year', 0, 1, 1, 1, 1, 1, '{}', 8),
+(128, 10, 'credit_per_month', 'number', 'Cicilan per Bulan', 1, 1, 1, 1, 1, 1, '{}', 10),
+(129, 10, 'order_belongsto_order_status_relationship', 'relationship', 'Status Pesanan', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\OrderStatus\",\"table\":\"order_statuses\",\"type\":\"belongsTo\",\"column\":\"status_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"categories\",\"pivot\":\"0\",\"taggable\":\"0\"}', 11);
 
 -- --------------------------------------------------------
 
@@ -239,7 +240,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (7, 'model_colors', 'model-colors', 'Warna Model', 'Warna Model', 'voyager-new', 'App\\ModelColor', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-01-20 02:30:26', '2020-01-20 02:35:15'),
 (8, 'model_features', 'model-features', 'Fitur Model', 'Fitur Model', 'voyager-new', 'App\\ModelFeature', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-01-20 02:30:48', '2020-01-20 02:35:49'),
 (9, 'order_statuses', 'order-statuses', 'Status Pesanan', 'Status Pesanan', 'voyager-new', 'App\\OrderStatus', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-01-20 02:31:13', '2020-01-20 02:31:13'),
-(10, 'orders', 'orders', 'Pesanan', 'Pesanan', 'voyager-new', 'App\\Order', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-01-20 02:31:46', '2020-01-20 02:36:52'),
+(10, 'orders', 'orders', 'Pesanan', 'Pesanan', 'voyager-new', 'App\\Order', NULL, NULL, NULL, 0, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-01-20 02:31:46', '2020-01-22 02:53:20'),
 (11, 'payments', 'payments', 'Pembayaran', 'Pembayaran', 'voyager-new', 'App\\Payment', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-01-20 02:32:09', '2020-01-20 02:37:51'),
 (12, 'product_models', 'product-models', 'Model Product', 'Model Produk', 'voyager-new', 'App\\ProductModel', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-01-20 02:32:37', '2020-01-21 00:06:05'),
 (13, 'product_spesifications', 'product-spesifications', 'Produk Spesifikasi', 'Produk Spesifikasi', 'voyager-new', 'App\\ProductSpesification', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-01-20 02:33:01', '2020-01-20 02:38:36'),
@@ -535,24 +536,23 @@ CREATE TABLE `orders` (
   `contact_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `total_amount` bigint(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `credit_per_month` bigint(20) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `status_id`, `description`, `shipping_address`, `contact_number`, `total_amount`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-20 03:39:13', '2020-01-20 03:39:13'),
-(2, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-20 03:39:27', '2020-01-20 03:39:27'),
-(3, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-20 03:39:37', '2020-01-20 03:39:37'),
-(4, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-20 03:41:44', '2020-01-20 03:41:44'),
-(5, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-20 03:42:18', '2020-01-20 03:42:18'),
-(6, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-20 03:43:34', '2020-01-20 03:43:34'),
-(7, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-20 03:45:32', '2020-01-20 03:45:32'),
-(8, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-20 03:45:53', '2020-01-20 03:45:53'),
-(22, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-20 03:55:30', '2020-01-20 03:55:30'),
-(23, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-21 00:04:29', '2020-01-21 00:04:29');
+INSERT INTO `orders` (`id`, `user_id`, `status_id`, `description`, `shipping_address`, `contact_number`, `total_amount`, `created_at`, `updated_at`, `credit_per_month`) VALUES
+(24, 1, 2, NULL, 'gunungpati unnes', '089682169754', 123123123, '2020-01-22 02:47:00', '2020-01-22 02:52:33', 123),
+(25, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-22 03:07:02', '2020-01-22 03:07:02', 0),
+(26, 1, 2, NULL, NULL, NULL, 167000000, '2020-01-22 04:53:39', '2020-01-22 04:53:39', 0),
+(27, 1, 2, NULL, 'SMP', '123', 200400000, '2020-01-22 04:54:43', '2020-01-22 04:54:43', 8350000),
+(28, 1, 2, NULL, 'SMP', '123', 167000000, '2020-01-22 04:55:21', '2020-01-22 04:55:21', 13916667),
+(29, 1, 4, NULL, 'SMP', '123', 167000000, '2020-01-22 04:57:35', '2020-01-22 04:57:35', 13916667),
+(30, 1, 4, NULL, 'SMP', '123', 167000000, '2020-01-22 04:57:45', '2020-01-22 04:57:45', 13916667),
+(31, 1, 4, NULL, 'SMP', '123', 167000000, '2020-01-22 04:58:09', '2020-01-22 04:58:09', 13916667);
 
 -- --------------------------------------------------------
 
@@ -576,8 +576,13 @@ CREATE TABLE `order_products` (
 --
 
 INSERT INTO `order_products` (`id`, `order_id`, `product_id`, `model_color_id`, `color`, `quantity`, `created_at`, `updated_at`) VALUES
-(18, 22, 1, NULL, 'Glistening Grey Metallic', 0, '2020-01-20 03:55:30', '2020-01-20 03:55:30'),
-(19, 23, 1, NULL, 'Glistening Grey Metallic', 0, '2020-01-21 00:04:29', '2020-01-21 00:04:29');
+(20, 25, 1, NULL, 'Glistening Grey Metallic', 0, '2020-01-22 03:07:02', '2020-01-22 03:07:02'),
+(21, 26, 1, NULL, 'Glistening Grey Metallic', 0, '2020-01-22 04:53:39', '2020-01-22 04:53:39'),
+(22, 27, 1, NULL, 'Glistening Grey Metallic', 0, '2020-01-22 04:54:43', '2020-01-22 04:54:43'),
+(23, 28, 1, NULL, 'Glistening Grey Metallic', 0, '2020-01-22 04:55:21', '2020-01-22 04:55:21'),
+(24, 29, 1, NULL, 'Glistening Grey Metallic', 0, '2020-01-22 04:57:35', '2020-01-22 04:57:35'),
+(25, 30, 1, NULL, 'Glistening Grey Metallic', 0, '2020-01-22 04:57:45', '2020-01-22 04:57:45'),
+(26, 31, 1, NULL, 'Glistening Grey Metallic', 0, '2020-01-22 04:58:09', '2020-01-22 04:58:09');
 
 -- --------------------------------------------------------
 
@@ -658,6 +663,13 @@ CREATE TABLE `payments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `payments`
+--
+
+INSERT INTO `payments` (`id`, `order_id`, `name`, `description`, `value`, `created_at`, `updated_at`) VALUES
+(1, 31, 'DP', NULL, 33400000, '2020-01-22 04:58:09', '2020-01-22 04:58:09');
 
 -- --------------------------------------------------------
 
@@ -1113,7 +1125,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$R89B3J.h0cil/XJmdtS.5.N9DaT1SLadfaM92N.8iQJ7SKWnSeV2i', '7Dx0rLH1clCxB5gLX9vxzkc5jolci73JkBznL0qR5NW3lAJGZ43DoGb0j9m7', NULL, '2020-01-20 02:29:43', '2020-01-20 02:29:43');
+(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$R89B3J.h0cil/XJmdtS.5.N9DaT1SLadfaM92N.8iQJ7SKWnSeV2i', 'uNZzkL6nkALupntZbE4f1Z6ui2UR7hApcnzPXc5ZBjT97z4oJu2YIwvGMwSg', NULL, '2020-01-20 02:29:43', '2020-01-20 02:29:43');
 
 -- --------------------------------------------------------
 
@@ -1368,7 +1380,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT untuk tabel `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_types`
@@ -1428,13 +1440,13 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT untuk tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `order_statuses`
@@ -1452,7 +1464,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT untuk tabel `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `permissions`
