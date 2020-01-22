@@ -21,18 +21,22 @@
                   <th>Mobil</th>
                   <th>Harga</th>
                   <th>Status</th>
+                  <th>Terbayar</th>
+                  <th>Kurang</th>
                   <th>Batas Waktu</th>
                 </tr>
               </thead>
               <tbody v-for="order in user.orders" :key="order.id">
                     <tr v-for="product in order.products" :key="product.id">
                         <td>
-                            <v-btn text v-if="order.status_id != 3" @click="destroy(order.id)">Hapus</v-btn>
+                            <v-btn text v-if="order.status_id == 2" @click="destroy(order.id)">Hapus</v-btn>
                         </td>
                         <td><v-img width="150" :src="`/storage/${product.product_model.image}`"></v-img></td>
                         <td>{{product.product_model.name}} Type {{product.name}}</td>
-                        <td>{{product.price}}</td>
+                        <td>Rp. {{product.price.toLocaleString()}}</td>
                         <td>{{order.order_status == null ? 'Pending' : order.order_status.name}}</td>
+                        <td>Rp. {{order.paid ? parseInt(order.paid).toLocaleString() : 0}}</td>
+                        <td>Rp. {{order.paid ? (order.total_amount - parseInt(order.paid)).toLocaleString() : 0}}</td>
                         <td>{{moment(order.created_at).add(6,'M').format('LLLL')}}</td>
                     </tr>
               </tbody>

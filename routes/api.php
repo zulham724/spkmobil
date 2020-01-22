@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user()->load([
         'orders.order_status',
-        'orders.products.product_model'
+        'orders.products.product_model',
+        'orders.payments',
+        'orders'=>function($query){
+            $query->withCount(['payments as paid'=>function($query){
+                $query->select(DB::raw('SUM(value)'));
+            }]);
+        }
     ]);
 });
 

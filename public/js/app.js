@@ -2813,6 +2813,7 @@ __webpack_require__.r(__webpack_exports__);
           color: _this.color
         };
         _this.loading = true;
+        access.order.total_amount = _this.product.price;
         axios.post('/api/v1/order', access).then(function (res) {
           _this.loading = false;
           _this.dialog = false;
@@ -2840,16 +2841,92 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CreditComponent',
+  props: {
+    product_model: null
+  },
   data: function data() {
-    return {};
+    return {
+      months: [12, 24, 48, 60],
+      dialog: false,
+      order: {
+        dp: 0
+      },
+      product: {},
+      color: {},
+      loading: false
+    };
+  },
+  watch: {
+    product: function product(val) {
+      this.order.dp = this.product.price * 20 / 100;
+      this.order.main_price = this.product.price - this.order.dp;
+    },
+    'order.month': function orderMonth() {
+      this.order.main_credit = this.order.main_price * 25 / 100 * this.order.month / 12;
+      this.order.total_amount = this.order.main_price + this.order.main_credit;
+      this.order.credit_per_month = this.order.total_amount / this.order.month;
+    }
+  },
+  mounted: function mounted() {},
+  methods: {
+    storeOrder: function storeOrder() {
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+        var access = {
+          order: _this.order,
+          product: _this.product,
+          color: _this.color
+        };
+        _this.loading = true;
+        axios.post('/api/v1/order', access).then(function (res) {
+          _this.loading = false;
+          _this.dialog = false;
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+            title: 'Sukses!',
+            text: 'Pembelian Berhasil',
+            icon: 'success'
+          });
+        })["catch"](function (err) {
+          _this.loading = false;
+        });
+      });
+    }
   }
 });
 
@@ -2925,6 +3002,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
 //
 //
 //
@@ -61192,14 +61273,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-6 col-md-12 col-lg-6" }, [
+  return _c(
+    "div",
+    { staticClass: "col-sm-6 col-md-12 col-lg-6" },
+    [
       _c(
         "a",
         {
@@ -61209,13 +61286,187 @@ var staticRenderFns = [
             id: "btn-credit",
             "data-toggle": "modal",
             "data-target": "#creditMobilModal"
+          },
+          on: {
+            click: function($event) {
+              _vm.dialog = true
+            }
           }
         },
         [_vm._v("Simulasi Kredit")]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { width: "500", transition: "dialog-transition" },
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-form",
+                    [
+                      _c("v-text-field", {
+                        attrs: { disabled: "" },
+                        model: {
+                          value: _vm.product_model.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.product_model, "name", $$v)
+                          },
+                          expression: "product_model.name"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: { label: "Alamat pengiriman" },
+                        model: {
+                          value: _vm.order.shipping_address,
+                          callback: function($$v) {
+                            _vm.$set(_vm.order, "shipping_address", $$v)
+                          },
+                          expression: "order.shipping_address"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: { label: "Kontak" },
+                        model: {
+                          value: _vm.order.contact_number,
+                          callback: function($$v) {
+                            _vm.$set(_vm.order, "contact_number", $$v)
+                          },
+                          expression: "order.contact_number"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          "return-object": "",
+                          label: "Tipe Mobil",
+                          items: _vm.product_model.products,
+                          "item-text": "name",
+                          "item-value": "id"
+                        },
+                        model: {
+                          value: _vm.product,
+                          callback: function($$v) {
+                            _vm.product = $$v
+                          },
+                          expression: "product"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          "return-object": "",
+                          label: "Pilih Warna",
+                          items: _vm.product_model.model_colors,
+                          "item-text": "name",
+                          "item-value": "id"
+                        },
+                        model: {
+                          value: _vm.color,
+                          callback: function($$v) {
+                            _vm.color = $$v
+                          },
+                          expression: "color"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        attrs: {
+                          items: _vm.months,
+                          label:
+                            "Jumlah Cicilan (Jangka Waktu/ Bulan) dengan Bunga per tahun 25"
+                        },
+                        model: {
+                          value: _vm.order.month,
+                          callback: function($$v) {
+                            _vm.$set(_vm.order, "month", $$v)
+                          },
+                          expression: "order.month"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        attrs: { label: "Uang Muka" },
+                        model: {
+                          value: _vm.order.dp,
+                          callback: function($$v) {
+                            _vm.$set(_vm.order, "dp", $$v)
+                          },
+                          expression: "order.dp"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "body-1 font-weight-bold" }, [
+                        _vm._v("Harga Pokok: " + _vm._s(_vm.order.main_price))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "body-1 font-weight-bold" }, [
+                        _vm._v("Total Bunga: " + _vm._s(_vm.order.main_credit))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "body-1 font-weight-bold" }, [
+                        _vm._v(
+                          "Harga Total Kredit: " +
+                            _vm._s(_vm.order.total_amount)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "body-1 font-weight-bold" }, [
+                        _vm._v(
+                          "Cicilan per Bulan: " +
+                            _vm._s(_vm.order.credit_per_month)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: {
+                            block: "",
+                            text: "",
+                            loading: _vm.loading,
+                            disabled: _vm.loading
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.storeOrder()
+                            }
+                          }
+                        },
+                        [_vm._v("Submit")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
       )
-    ])
-  }
-]
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -61342,7 +61593,7 @@ var render = function() {
                         _c(
                           "td",
                           [
-                            order.status_id != 3
+                            order.status_id == 2
                               ? _c(
                                   "v-btn",
                                   {
@@ -61381,7 +61632,11 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(product.price))]),
+                        _c("td", [
+                          _vm._v(
+                            "Rp. " + _vm._s(product.price.toLocaleString())
+                          )
+                        ]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
@@ -61390,6 +61645,30 @@ var render = function() {
                                 ? "Pending"
                                 : order.order_status.name
                             )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "Rp. " +
+                              _vm._s(
+                                order.paid
+                                  ? parseInt(order.paid).toLocaleString()
+                                  : 0
+                              )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "Rp. " +
+                              _vm._s(
+                                order.paid
+                                  ? (
+                                      order.total_amount - parseInt(order.paid)
+                                    ).toLocaleString()
+                                  : 0
+                              )
                           )
                         ]),
                         _vm._v(" "),
@@ -61455,6 +61734,10 @@ var staticRenderFns = [
         _c("th", [_vm._v("Harga")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Terbayar")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Kurang")]),
         _vm._v(" "),
         _c("th", [_vm._v("Batas Waktu")])
       ])
@@ -115781,8 +116064,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\xampp\htdocs\spkmobil\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\xampp\htdocs\spkmobil\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\spkmobil\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\spkmobil\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

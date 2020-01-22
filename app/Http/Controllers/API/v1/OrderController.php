@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\v1;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\Product;
+use App\Payment;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -28,12 +29,12 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
-        $order = new Order();
-        $order->status_id = 2;
-        $order->total_amount = $request->product['price'];
+        $order = new Order($request->order);
+        $order->status_id = $request->order['dp'] ? 4 : 2;
         $request->user()->orders()->save($order);
+        $request->order['dp'] ? $order->payments()->save(new Payment(['name'=>'DP','value'=>$request->order['dp']])) : null;
         $order->products()->sync([$request->product['id']=>['color'=>$request->color['name']]]);
-        return response()->json($order->load('products'));
+        return response()->json($order->load('products','payments'));
     }
 
     /**

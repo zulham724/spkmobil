@@ -51,6 +51,7 @@ export default {
                   color:this.color
               }
               this.loading = true
+              access.order.total_amount = this.product.price
               axios.post('/api/v1/order',access).then(res=>{
                 this.loading = false
                 this.dialog = false

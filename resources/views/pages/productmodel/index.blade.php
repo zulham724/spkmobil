@@ -32,7 +32,7 @@
                           <div class="d-flex">
                               <div class="w-100">
                                   <small>Mulai dari:</small>
-                              <p class="price"><span class="price-sale">Rp. {{$product_model->products[0]->price}}</span></p>
+                              <p class="price"><span class="price-sale">Rp. {{number_format($product_model->products[0]->price,2,',','.')}}</span></p>
                               </div>
                           </div>
                       </div>

@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_address');
             $table->string('contact_number');
             $table->bigInteger('total_amount');
+            $table->bigInteger('credit_per_month')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
