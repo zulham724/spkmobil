@@ -17,35 +17,16 @@
         <div class="col-md-12 order-md-last d-flex">
           <div class="bg-white contact-form text-center">
             <div class="position-absolute m-2" style="right:1rem;">
-              <a class="btn btn-sm btn-primary icon-pencil" href="#" data-toggle="modal" data-target="#profilModal" title="Edit Profil"></a>
+              {{-- <a class="btn btn-sm btn-primary icon-pencil" href="#" data-toggle="modal" data-target="#profilModal" title="Edit Profil"></a> --}}
             </div>
-            {{-- <img class="img-thumbnail my-3" width="200" src="{{  $user['foto'] != '' ? asset('vegefoods/uploads/user/'.$user['foto']) : asset('vegefoods/uploads/user/default.png') }}"> --}}
-            {{-- <p class="h3 text-uppercase">{{  $user['nama_user'] }}</p> --}}
+          <img class="img-thumbnail my-3" width="200" src="/storage/{{Auth::user()->avatar}}">
+            <p class="h3 text-uppercase">{{  Auth::user()->name }}</p>
+            <p class="h3">{{  Auth::user()->email }}</p>
           </div>
         </div>
       </div>
       <div class="row d-flex my-5 contact-info">
-        <div class="w-100"></div>
-        <div class="col-md-3 col-sm-6 d-flex">
-          <div class="info bg-white p-4">
-            {{-- <p><span>Alamat:</span><br><span class="text-dark">{{  $user['alamat'] != '' ? $user['alamat'] : '-' }}</span></p> --}}
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 d-flex">
-          <div class="info bg-white p-4">
-            {{-- <p><span>Email:</span><br><a class="text-dark" href="mailto:{{  $user['email'] }}">{{  $user['email'] }}</a></p> --}}
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 d-flex">
-          <div class="info bg-white p-4">
-            {{-- <p><span>No Telp:</span><br><span class="text-dark">{{  $user['no_telepon'] != '' ? $user['no_telepon'] : '-' }}</span></p> --}}
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 d-flex">
-          <div class="info bg-white p-4">
-            {{-- <p><span>No KTP:</span><br><span class="text-dark">{{  $user['no_ktp'] != '' ? $user['no_ktp'] : '-' }}</span></p> --}}
-          </div>
-        </div>
+        
       </div>
     </div>
   </section>
