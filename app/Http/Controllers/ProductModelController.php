@@ -52,7 +52,7 @@ class ProductModelController extends Controller
     public function show($id)
     {
         //
-        $data['product_model'] = ProductModel::with('model_colors')->findOrFail($id);
+        $data['product_model'] = ProductModel::with('model_colors','model_features')->findOrFail($id);
         // dd($data);
         return view('pages.productmodel.show',$data);
     }
