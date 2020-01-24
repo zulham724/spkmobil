@@ -24,9 +24,9 @@
       <link rel="stylesheet" href="{{  asset('vegefoods/css/flaticon.css') }}">
       <link rel="stylesheet" href="{{  asset('vegefoods/css/icomoon.css') }}">
       <link rel="stylesheet" href="{{  asset('vegefoods/css/style.css') }}">
-      <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-      <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
-      <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+      <link href="{{asset('css/roboto.css')}}" rel="stylesheet">
+      <link href="{{asset('css/materialdesignicons.min.css')}}" rel="stylesheet">
+      <link href="{{asset('css/vuetify.min.css')}}" rel="stylesheet">
       @yield('css')
 </head>
 <body class="goto-here">
