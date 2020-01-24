@@ -18,6 +18,7 @@
                 <tr class="text-center">
                   <th>&nbsp;</th>
                   <th>&nbsp;</th>
+                  <th>Nomor Pesanan</th>
                   <th>Mobil</th>
                   <th>Harga</th>
                   <th>Status</th>
@@ -32,8 +33,9 @@
                             <v-btn text v-if="order.status_id == 2" @click="destroy(order.id)">Hapus</v-btn>
                         </td>
                         <td><v-img width="150" :src="`/storage/${product.product_model.image}`"></v-img></td>
+                        <td>{{order.id}}</td>
                         <td>{{product.product_model.name}} Type {{product.name}}</td>
-                        <td>Rp. {{product.price.toLocaleString()}}</td>
+                        <td>Rp. {{order.total_amount.toLocaleString()}}</td>
                         <td>{{order.order_status == null ? 'Pending' : order.order_status.name}}</td>
                         <td>Rp. {{order.paid ? parseInt(order.paid).toLocaleString() : 0}}</td>
                         <td>Rp. {{order.paid ? (order.total_amount - parseInt(order.paid)).toLocaleString() : 0}}</td>

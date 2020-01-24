@@ -1,4 +1,11 @@
-@extends('layouts.vegefoods') @section('content')
+@extends('layouts.vegefoods') 
+@section('css')
+    <style>
+        .table {min-width: auto !important;}
+        .table tbody tr td {padding: .75rem; padding-left: 0; text-align: left !important;}
+    </style>
+@endsection
+@section('content')
 <section class="p-0" style="height: calc(100vh - 67px); background-image: url({{ asset('storage/'.str_replace('\\','/',$product_model->image)) }}); background-size: cover; background-position: inherit;">
     <div class="col">
         <div class="row">
@@ -44,19 +51,7 @@
                             <li class="nav-item">
                                 <a class="nav-link {{$mf==0? 'active': null}}" id="{{$model_feature->name}}-tab" data-toggle="tab" href="#{{$model_feature->name}}" role="tab" aria-controls="{{$model_feature->name}}" aria-selected="true">{{$model_feature->name}}</a>
                             </li>
-                            @endforeach {{--
-                            <li class="nav-item">
-                                <a class="nav-link active" id="eksterior-tab" data-toggle="tab" href="#eksterior" role="tab" aria-controls="eksterior" aria-selected="true">Eksterior</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="interior-tab" data-toggle="tab" href="#interior" role="tab" aria-controls="interior" aria-selected="true">Interior</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="performa-tab" data-toggle="tab" href="#performa" role="tab" aria-controls="performa" aria-selected="true">Performa</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="keamanan-tab" data-toggle="tab" href="#keamanan" role="tab" aria-controls="keamanan" aria-selected="true">Keamanan</a>
-                            </li> --}}
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -72,81 +67,14 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach {{--
-                    <div class="tab-pane active" id="eksterior" role="tabpanel" aria-labelledby="eksterior-tab">
-                        <div class="row">
-                            <div class="col-12">
-                                <img class="img-fluid mx-auto my-3 d-block" src="">
-                            </div>
-                            <div class="col-12">
-                                <p class="text-justify"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="interior" role="tabpanel" aria-labelledby="interior-tab">
-                        <div class="row">
-                            <div class="col-12">
-                                <img class="img-fluid mx-auto my-3 d-block" src="">
-                            </div>
-                            <div class="col-12">
-                                <p class="text-justify"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="performa" role="tabpanel" aria-labelledby="performa-tab">
-                        <div class="row">
-                            <div class="col-12">
-                                <img class="img-fluid mx-auto my-3 d-block" src="">
-                            </div>
-                            <div class="col-12">
-                                <p class="text-justify"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="keamanan" role="tabpanel" aria-labelledby="keamanan-tab">
-                        <div class="row">
-                            <div class="col-12">
-                                <img class="img-fluid mx-auto my-3 d-block" src="">
-                            </div>
-                            <div class="col-12">
-                                <p class="text-justify"></p>
-                            </div>
-                        </div>
-                    </div> --}}
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="ftco-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mb-5 ftco-animate">
-                <h3 class="mb-4">Varian Warna</h3>
-                <div class="row">
-                    {{-- {{ foreach($model_mobil['varian_warna'] as $key=>$varian_warna): }}
-                    <div class="col-4 col-sm-3 col-md-2">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" name="varian_warna" id="warna-{{  $varian_warna['warna'] }}" class="custom-control-input varian-warna" data-id="{{  $key }}" value="{{  $varian_warna['warna'] }}" {{ $key==0 ? 'checked' : '' }}>
-                            <label class="custom-control-label" for="warna-{{  $varian_warna['warna'] }}">Warna {{  ($key+1) }}</label>
-                        </div>
-                    </div>
-                    {{ endforeach; }} --}}
-                </div>
-                <div class="row my-3 py-2 border-top border-secondary">
-                    <div class="col-sm-12">
-                        {{--
-                        <h4 class="text-center nama-warna">{{ $model_mobil['varian_warna'][0]['warna'] }}</h4> --}}
-                    </div>
-                    <div class="col-sm-8 mx-auto">
-                        {{-- <img class="img-fluid gambar-warna" src="{{  asset('vegefoods/uploads/mobil/'.$model_mobil['varian_warna'][0]['gambar']) }}"> --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<model-color-component :product_model="{{$product_model}}"></model-color-component>
 
 <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
     <div class="container py-4">
@@ -154,12 +82,12 @@
             <div class="col-lg-6 col-md-8 mx-auto mb-5 ftco-animate">
                 <h3 class="text-center">Pricelist</h3>
                 <table class="table">
-                    {{-- {{ foreach($mobil as $row): }}
+                    @foreach($product_model->products as $product)
                     <tr>
-                        <td width="50%">{{ $row['tipe_mobil'] }}</td>
-                        <td width="50%" style="text-align: right!important;">Rp. {{ number_format($row['harga'], 0, ',', ',') }}</td>
+                        <td width="50%">{{$product->name}}</td>
+                        <td width="50%" style="text-align: right!important;">Rp. {{ number_format($product->price, 2, ',', ',') }}</td>
                     </tr>
-                    {{ endforeach; }} --}}
+                    @endforeach
                 </table>
             </div>
         </div>

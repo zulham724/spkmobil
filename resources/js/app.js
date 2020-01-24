@@ -45,6 +45,7 @@ Vue.component('download-brochure-component', require('./components/vegefoods/Dow
 Vue.component('credit-component', require('./components/vegefoods/CreditComponent.vue').default);
 Vue.component('spk-component', require('./components/vegefoods/SpkComponent.vue').default);
 Vue.component('order-list-component', require('./components/vegefoods/OrderListComponent.vue').default);
+Vue.component('model-color-component', require('./components/vegefoods/ModelColor.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
