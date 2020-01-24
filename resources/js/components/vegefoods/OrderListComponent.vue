@@ -32,7 +32,7 @@
                         <td>
                             <v-btn text v-if="order.status_id == 2" @click="destroy(order.id)">Hapus</v-btn>
                         </td>
-                        <td><v-img width="150" :src="`/storage/${product.product_model.image}`"></v-img></td>
+                        <td><v-img width="150" :src="`/storage/${order.order_product.model_color_id ? order.order_product.model_color.image : product.product_model.image}`"></v-img></td>
                         <td>{{order.id}}</td>
                         <td>{{product.product_model.name}} Type {{product.name}}</td>
                         <td>Rp. {{order.total_amount.toLocaleString()}}</td>

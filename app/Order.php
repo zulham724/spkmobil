@@ -24,4 +24,8 @@ class Order extends Model
     public function products(){
         return $this->belongsToMany('App\Product','order_products')->withTimestamps()->withPivot(['quantity','model_color_id','color']);
     }
+
+    public function order_product(){
+        return $this->hasOne('App\OrderProduct');
+    }
 }

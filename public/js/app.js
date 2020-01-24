@@ -61768,7 +61768,11 @@ var render = function() {
                             _c("v-img", {
                               attrs: {
                                 width: "150",
-                                src: "/storage/" + product.product_model.image
+                                src:
+                                  "/storage/" +
+                                  (order.order_product.model_color_id
+                                    ? order.order_product.model_color.image
+                                    : product.product_model.image)
                               }
                             })
                           ],

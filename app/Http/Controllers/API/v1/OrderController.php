@@ -30,10 +30,10 @@ class OrderController extends Controller
     {
         //
         $order = new Order($request->order);
-        $order->status_id = $request->order['dp'] ? 4 : 2;
+        $order->status_id = isset($request->order['dp']) ? 4 : 2;
         $request->user()->orders()->save($order);
-        $request->order['dp'] ? $order->payments()->save(new Payment(['name'=>'DP','value'=>$request->order['dp']])) : null;
-        $order->products()->sync([$request->product['id']=>['color'=>$request->color['name']]]);
+        isset($request->order['dp']) ? $order->payments()->save(new Payment(['name'=>'DP','value'=>$request->order['dp']])) : null;
+        $order->products()->sync([$request->product['id']=>['color'=>$request->color['name'],'model_color_id'=>$request->color['id']]]);
         return response()->json($order->load('products','payments'));
     }
 

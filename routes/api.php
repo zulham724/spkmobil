@@ -19,6 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
         'orders.order_status',
         'orders.products.product_model',
         'orders.payments',
+        'orders.order_product.model_color',
         'orders'=>function($query){
             $query->withCount(['payments as paid'=>function($query){
                 $query->select(DB::raw('SUM(value)'));
