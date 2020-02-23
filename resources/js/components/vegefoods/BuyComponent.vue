@@ -14,6 +14,7 @@
                     <v-text-field v-model="order.contact_number" label="Kontak"></v-text-field>
                     <v-select v-model="product" return-object label="Tipe Mobil" :items="product_model.products" item-text="name" item-value="id"></v-select>
                     <v-select v-model="color" return-object label="Pilih Warna" :items="product_model.model_colors" item-text="name" item-value="id"></v-select>
+                    <v-img v-if="color != null" :src="`/storage/${product_model.model_colors.find(item=>item.id == color.id).image}`"></v-img>
                     <v-btn block text @click="storeOrder()" :loading="loading" :disabled="loading">Submit</v-btn>
                 </v-form>
             </v-card-text>
@@ -33,10 +34,10 @@ export default {
   data() {
     return {
     	dialog:false,
-        order:{},
-        product:{},
-        color:{},
-        loading: false,
+      order:{},
+      product:{},
+      color:null,
+      loading: false,
     };
   },
   mounted(){
@@ -44,6 +45,7 @@ export default {
   },
   methods:{
       storeOrder(){
+          // console.log(this.color,this.product_model.model_colors.find(item=>item.id == this.color.id).image)
           return new Promise((resolve,reject)=>{
               let access = {
                   order:this.order,

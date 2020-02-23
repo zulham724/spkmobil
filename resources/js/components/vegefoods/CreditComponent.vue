@@ -14,6 +14,7 @@
                     <v-text-field v-model="order.contact_number" label="Kontak"></v-text-field>
                     <v-select v-model="product" return-object label="Tipe Mobil" :items="product_model.products" item-text="name" item-value="id"></v-select>
                     <v-select v-model="color" return-object label="Pilih Warna" :items="product_model.model_colors" item-text="name" item-value="id"></v-select>
+                    <v-img v-if="color != null" :src="`/storage/${product_model.model_colors.find(item=>item.id == color.id).image}`"></v-img>
                     <v-select :items="months" v-model="order.month" label="Jumlah Cicilan (Jangka Waktu/ Bulan) dengan Bunga per tahun 25"></v-select>
                     <v-text-field label="Uang Muka" v-model="order.dp"></v-text-field>
                     <div class="body-1 font-weight-bold">Harga Pokok: {{order.main_price}}</div>
@@ -44,7 +45,7 @@ export default {
             dp:0,
         },
         product:{},
-        color:{},
+        color:null,
         loading: false,
     };
   },

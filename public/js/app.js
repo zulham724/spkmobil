@@ -2784,6 +2784,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'BuyComponent',
@@ -2795,7 +2796,7 @@ __webpack_require__.r(__webpack_exports__);
       dialog: false,
       order: {},
       product: {},
-      color: {},
+      color: null,
       loading: false
     };
   },
@@ -2806,6 +2807,7 @@ __webpack_require__.r(__webpack_exports__);
     storeOrder: function storeOrder() {
       var _this = this;
 
+      // console.log(this.color,this.product_model.model_colors.find(item=>item.id == this.color.id).image)
       return new Promise(function (resolve, reject) {
         var access = {
           order: _this.order,
@@ -2873,6 +2875,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CreditComponent',
@@ -2887,7 +2890,7 @@ __webpack_require__.r(__webpack_exports__);
         dp: 0
       },
       product: {},
-      color: {},
+      color: null,
       loading: false
     };
   },
@@ -61275,6 +61278,20 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
+                      _vm.color != null
+                        ? _c("v-img", {
+                            attrs: {
+                              src:
+                                "/storage/" +
+                                _vm.product_model.model_colors.find(function(
+                                  item
+                                ) {
+                                  return item.id == _vm.color.id
+                                }).image
+                            }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c(
                         "v-btn",
                         {
@@ -61441,6 +61458,20 @@ var render = function() {
                           expression: "color"
                         }
                       }),
+                      _vm._v(" "),
+                      _vm.color != null
+                        ? _c("v-img", {
+                            attrs: {
+                              src:
+                                "/storage/" +
+                                _vm.product_model.model_colors.find(function(
+                                  item
+                                ) {
+                                  return item.id == _vm.color.id
+                                }).image
+                            }
+                          })
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("v-select", {
                         attrs: {
@@ -116293,8 +116324,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\spkmobil\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\spkmobil\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! c:\xampp\htdocs\spkmobil\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\xampp\htdocs\spkmobil\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
